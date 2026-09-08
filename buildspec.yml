@@ -12,7 +12,8 @@ phases:
       - npm test -- --passWithNoTests
       - echo "Logging in to Amazon ECR..."
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
-      - IMAGE_TAG=${CODEBUILD_RESOLVED_SOURCE_VERSION::7}
+      - IMAGE_TAG=build-${CODEBUILD_BUILD_NUMBER}
+      # - IMAGE_TAG=${CODEBUILD_RESOLVE D_SOURCE_VERSION::7}
 
   build:
     commands:
